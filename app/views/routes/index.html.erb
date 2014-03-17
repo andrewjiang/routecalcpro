@@ -1,3 +1,6 @@
+<script>
+    mixpanel.track("Results loaded");
+</script>
 <div class="container">
 
 <h1>Import CSV</h1>
@@ -45,6 +48,9 @@
       </tbody>
     </table>
   </div>
+
+
+<h3 class="alert alert-success" style="letter-spacing:1px">Want to run distance analysis on up to 1,000,000 routes at a time? Send your file to <%= mail_to "requests@routecalcpro.com","requests@routecalcpro.com", :id=>"request" %> for a quick quote and 24 hour turnaround.</h3>
 
 </div>
 

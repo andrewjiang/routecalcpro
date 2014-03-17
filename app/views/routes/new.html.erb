@@ -1,13 +1,18 @@
+<script>
+    mixpanel.track("Root loaded");
+</script>
 <div class="container">
 
 <h1>Import CSV</h1>
 
-<h4 class="alert alert-info" style="letter-spacing:1px">Import a .csv file with your routes listed in two columns, one with the header <strong style="color: #2c3e50;">origin</strong> and the other with the header <strong style="color: #2c3e50;">destination</strong> (all lowercase).</h4>
+<h4 class="alert alert-info" style="letter-spacing:1px">Import a .csv file with your routes listed in two columns, one with the header <strong style="color: #2c3e50;">origin</strong> and the other with the header <strong style="color: #2c3e50;">destination</strong> (all lowercase). <br> <br>
+<%= image_tag 'sample.png', :style=>"border: 3px solid #2c3e50;" %>
+</h4>
 
 <%= form_tag import_routes_path multipart: true do %>
   <%= file_field_tag :file %>
   <br>
-  <%= submit_tag "Import", :class=>"btn btn-primary btn-lg" %>
+  <%= submit_tag "Import", :class=>"btn btn-primary btn-lg", :onclick => 'mixpanel.track("Import clicked");' %>
 <% end %>
 
 </div>

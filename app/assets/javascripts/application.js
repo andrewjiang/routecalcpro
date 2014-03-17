@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+	var track = document.getElementById('request');
+	track.onclick = trackRequest
+
+
+	function trackRequest() {
+	  mixpanel.track("Request clicked");
+	}
+})
