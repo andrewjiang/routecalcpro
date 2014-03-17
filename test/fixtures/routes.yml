@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin_zip: MyString
+  destination_zip: MyString
+  driving_distance: 1.5
+  driving_time: 1.5
+
+two:
+  origin_zip: MyString
+  destination_zip: MyString
+  driving_distance: 1.5
+  driving_time: 1.5

@@ -1,0 +1,16 @@
+<table border="1">
+	<tr>
+		<th>Origin Zip</th>
+		<th>Destination Zip</th>
+		<th>Driving Distance</th>
+		<th>Driving Zip</th>
+	</tr>
+	<% @routes.each do |route| %>
+	<tr>
+		<th><%= route.origin_zip %></th>
+		<th><%= route.destination_zip %></th>
+		<th><%= route.driving_distance %></th>
+		<th><%= route.driving_time %></th>
+	</tr>
+	<% end %>
+</table>

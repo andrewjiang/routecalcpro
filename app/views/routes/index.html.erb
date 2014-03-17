@@ -1,0 +1,51 @@
+<div class="container">
+
+<h1>Import CSV</h1>
+
+<h4 class="alert alert-info">Import a .csv file with all of your routes listed in two columns, one with the header <strong style="color: #2c3e50;">Origin</strong> and the other with the header <strong style="color: #2c3e50;">Destination</strong>.</h4>
+
+<%= form_tag import_routes_path multipart: true do %>
+  <%= file_field_tag :file %>
+  <br>
+  <%= submit_tag "Import", :class=>"btn btn-primary btn-lg" %>
+<% end %>
+
+<br> 
+<div class="well">
+
+<h1>Resulting route calculations</h1>
+
+<p>
+  Download:
+  <%= link_to "CSV", routes_path(format: "csv") %>
+  <%= link_to "Excel", routes_path(format: "xls") %>
+</p>
+
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Origin</th>
+          <th>Destination</th>
+          <th>Driving distance</th>
+          <th>Driving time</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @routes.each do |route| %>
+          <tr>
+            <td><%= route.origin %></td>
+            <td><%= route.destination %></td>
+            <td><%= route.driving_distance %> mi.</td>
+            <td><%= route.driving_time %> hours</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+</div>

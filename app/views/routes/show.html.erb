@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Origin zip:</strong>
+  <%= @route.origin %>
+</p>
+
+<p>
+  <strong>Destination zip:</strong>
+  <%= @route.destination %>
+</p>
+
+<p>
+  <strong>Driving distance:</strong>
+  <%= @route.driving_distance %>
+</p>
+
+<p>
+  <strong>Driving time:</strong>
+  <%= @route.driving_time %>
+</p>
+
+<%= link_to 'Edit', edit_route_path(@route) %> |
+<%= link_to 'Back', routes_path %>
