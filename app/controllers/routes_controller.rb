@@ -24,7 +24,7 @@ class RoutesController < ApplicationController
     file_path = File.path(params[:file])
 
     CSV.foreach(file_path, headers: true) do |row|
-      if $. <= 11
+      if $. <= 21
         Route.create! row.to_hash
       end
     end
