@@ -4,7 +4,7 @@ Routecalc::Application.routes.draw do
   end
   resources :orders
 
-  root :to => "routes#index"
+  root :to => "routes#new"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

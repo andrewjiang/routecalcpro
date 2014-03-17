@@ -19,7 +19,9 @@ class RoutesController < ApplicationController
 
   def import
     #Route.import(params[:file])
-    file_path = File.absolute_path(params[:file])
+    Route.destroy_all
+
+    file_path = File.path(params[:file])
 
     CSV.foreach(file_path, headers: true) do |row|
       if $. <= 11
@@ -33,14 +35,21 @@ class RoutesController < ApplicationController
         puts @origin
         @destination = route.destination.gsub(/\s+/, '%20').gsub(/[^0-9A-Za-z%]/, '')
         puts @destination
+        @apikey = 'AIzaSyB-w7Z2JN-z6M24npOOyHAWgzlfJmq_VNw' #ENV["GMAPS_API_KEY"]
 
-        url = URI.parse('http://maps.googleapis.com/maps/api/directions/json?origin=' + @origin + '&destination=' + @destination + '&sensor=false')
-        req = Net::HTTP::Get.new(url.to_s)
-        res = Net::HTTP.start(url.host, url.port) {|http|
-          http.request(req)
-        }
-        result1 = res.body
+        uri = URI.parse('https://maps.googleapis.com/maps/api/directions/json?origin=' + @origin + '&destination=' + @destination + '&sensor=false&key=' + @apikey)
+        puts 'https://maps.googleapis.com/maps/api/directions/json?origin=' + @origin + '&destination=' + @destination + '&sensor=false&key=' + @apikey
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+        request = Net::HTTP::Get.new(uri.request_uri)
+
+        response = http.request(request)
+
+        result1 = response.body
         parsed_json = ActiveSupport::JSON.decode(result1)
+        puts parsed_json["status"]
         @distance = (parsed_json["routes"][0]["legs"][0]["distance"]["value"] / 1609.34).round(1)
         @duration = (parsed_json["routes"][0]["legs"][0]["duration"]["value"] / 60).round(0)
         route.update_attribute(:driving_distance, @distance)
@@ -50,7 +59,7 @@ class RoutesController < ApplicationController
       end
     end
 
-    redirect_to root_url, notice: "Routes imported"
+    redirect_to routes_path, notice: "Routes imported"
   end
 
 
