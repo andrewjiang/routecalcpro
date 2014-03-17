@@ -2,7 +2,7 @@
 
 <h1>Import CSV</h1>
 
-<h4 class="alert alert-info">Import a .csv file with all of your routes listed in two columns, one with the header <strong style="color: #2c3e50;">Origin</strong> and the other with the header <strong style="color: #2c3e50;">Destination</strong>.</h4>
+<h4 class="alert alert-info" style="letter-spacing:1px">Import a .csv file with your routes listed in two columns, one with the header <strong style="color: #2c3e50;">origin</strong> and the other with the header <strong style="color: #2c3e50;">destination</strong> (all lowercase).</h4>
 
 <%= form_tag import_routes_path multipart: true do %>
   <%= file_field_tag :file %>
